@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+readonly PACKAGED_INSTALLER="/usr/lib/nerdshell/linux/install.sh"
+
+run_installer() {
+  local installer="$1"
+  shift
+
+  if [[ "${1:-}" == "--desktop" ]]; then
+    shift
+    set +e
+    "$installer" "$@"
+    local status=$?
+    set -e
+
+    printf '\n'
+    if [[ $status -eq 0 ]]; then
+      printf 'Nerdshell installation completed successfully.\n'
+    else
+      printf 'Nerdshell installation failed with exit code %s.\n' "$status"
+    fi
+    printf 'Press Enter to close this window...'
+    read -r _
+    return "$status"
+  fi
+
+  exec "$installer" "$@"
+}
+
+if [[ -x "$PACKAGED_INSTALLER" ]]; then
+  run_installer "$PACKAGED_INSTALLER" "$@"
+  exit $?
+fi
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+run_installer "$ROOT/linux/install.sh" "$@"

@@ -32,7 +32,29 @@ It is designed for people who want a beautiful, visual, useful terminal without 
 
 The installer creates backups before replacing any shell or terminal config.
 
-## Linux install
+## Debian, Ubuntu and derivatives (.deb)
+
+Build the package on macOS or Linux:
+
+```bash
+./packaging/build-deb.sh 0.1.0
+```
+
+The package is created at `dist/nerdshell_0.1.0_all.deb`. Install it with your
+graphical package manager (Discover, App Center, Software) or with:
+
+```bash
+sudo apt install ./dist/nerdshell_0.1.0_all.deb
+```
+
+After installing the package, open **Nerdshell Installer** from the application
+menu. It runs as your normal user, creates backups, installs available tools and
+applies the terminal configuration.
+
+Official targets are Debian, Ubuntu and Kubuntu. Linux Mint, KDE Neon, Pop!_OS,
+Zorin OS and other compatible derivatives are expected to work as well.
+
+## Other Linux distributions
 
 From the project folder:
 

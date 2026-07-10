@@ -89,7 +89,7 @@ install_configs() {
 }
 
 configure_git_delta() {
-  if command_exists git; then
+  if command_exists git && command_exists delta; then
     log "Configuring Git delta"
     git config --global core.pager "delta"
     git config --global interactive.diffFilter "delta --color-only"
@@ -98,5 +98,7 @@ configure_git_delta() {
     git config --global delta.line-numbers true
     git config --global merge.conflictstyle zdiff3
     git config --global diff.colorMoved default
+  elif command_exists git; then
+    warn "Git delta is unavailable; leaving the current Git pager unchanged."
   fi
 }

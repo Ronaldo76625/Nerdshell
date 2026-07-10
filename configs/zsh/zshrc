@@ -130,27 +130,48 @@ if command -v fzf >/dev/null 2>&1 && [[ -t 0 && -t 1 ]]; then
   source <(fzf --zsh)
 fi
 
-alias search='rg'
+if command -v rg >/dev/null 2>&1; then
+  alias search='rg'
+else
+  alias search='grep -R'
+fi
 ffind() {
-  fd --glob "$@"
+  if command -v fd >/dev/null 2>&1; then
+    fd --glob "$@"
+  elif command -v fdfind >/dev/null 2>&1; then
+    fdfind --glob "$@"
+  else
+    find . -iname "*$1*"
+  fi
 }
 
 # =========================================================
 # Eza / Bat / terminal visuals
 # =========================================================
-export EZA_CONFIG_DIR="$HOME/.config/eza"
-export EZA_ICONS_AUTO="always"
-export EZA_ICON_SPACING=2
+if command -v eza >/dev/null 2>&1; then
+  export EZA_CONFIG_DIR="$HOME/.config/eza"
+  export EZA_ICONS_AUTO="always"
+  export EZA_ICON_SPACING=2
 
-alias ls='eza --icons=always --color=always --group-directories-first'
-alias l='eza --icons=always --color=always --group-directories-first'
-alias ll='eza -lh --icons=always --color=always --group-directories-first --git'
-alias la='eza -lah --icons=always --color=always --group-directories-first --git'
-alias lt='eza --tree --level=2 --icons=always --color=always --group-directories-first'
-alias tree='eza --tree --icons=always --color=always --group-directories-first'
+  alias ls='eza --icons=always --color=always --group-directories-first'
+  alias l='eza --icons=always --color=always --group-directories-first'
+  alias ll='eza -lh --icons=always --color=always --group-directories-first --git'
+  alias la='eza -lah --icons=always --color=always --group-directories-first --git'
+  alias lt='eza --tree --level=2 --icons=always --color=always --group-directories-first'
+  alias tree='eza --tree --icons=always --color=always --group-directories-first'
+else
+  alias l='ls -CF'
+  alias ll='ls -lh'
+  alias la='ls -lah'
+  alias lt='find . -maxdepth 2 -type d'
+fi
 
-alias batcat='bat --paging=never'
-alias preview='bat --style=numbers,changes --color=always'
+if command -v bat >/dev/null 2>&1; then
+  alias batcat='bat --paging=never'
+  alias preview='bat --style=numbers,changes --color=always'
+elif command -v batcat >/dev/null 2>&1; then
+  alias preview='batcat --style=numbers,changes --color=always'
+fi
 
 # =========================================================
 # Directory shortcuts

@@ -1,0 +1,11 @@
+Package: nerdshell
+Version: @VERSION@
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Nerdshell Project
+Depends: bash, zsh, git, curl, ca-certificates, unzip, xz-utils, fontconfig
+Recommends: eza, bat, btop, fastfetch, fzf, fd-find, ripgrep, zoxide, zsh-autosuggestions, zsh-syntax-highlighting, jq, p7zip-full
+Description: Premium terminal environment for Debian and Ubuntu
+ Nerdshell configures Zsh, Starship, eza, developer utilities, fonts,
+ Git delta, SDKMAN and NVM with safe backups of existing user settings.

@@ -18,10 +18,7 @@ install_linux_packages() {
 
   if command_exists apt-get; then
     $SUDO apt-get update
-    $SUDO apt-get install -y \
-      zsh git curl unzip fontconfig eza bat btop fastfetch lazygit fzf fd-find \
-      ripgrep git-delta zoxide zsh-autosuggestions zsh-syntax-highlighting \
-      starship jq p7zip-full
+    install_apt_packages
   elif command_exists dnf; then
     $SUDO dnf install -y \
       zsh git curl unzip fontconfig eza bat btop fastfetch lazygit fzf fd-find \
@@ -39,6 +36,40 @@ install_linux_packages() {
       starship jq p7zip
   else
     fail "Unsupported Linux package manager. Install packages manually, then rerun Nerdshell."
+  fi
+}
+
+apt_package_exists() {
+  apt-cache show "$1" >/dev/null 2>&1
+}
+
+install_apt_packages() {
+  local required=(zsh git curl ca-certificates unzip xz-utils fontconfig)
+  local optional=(
+    eza bat btop fastfetch lazygit fzf fd-find ripgrep git-delta zoxide
+    zsh-autosuggestions zsh-syntax-highlighting starship jq p7zip-full
+  )
+  local available=()
+  local missing=()
+  local package
+
+  $SUDO apt-get install -y "${required[@]}"
+
+  for package in "${optional[@]}"; do
+    if apt_package_exists "$package"; then
+      available+=("$package")
+    else
+      missing+=("$package")
+    fi
+  done
+
+  if ((${#available[@]})); then
+    $SUDO apt-get install -y "${available[@]}"
+  fi
+
+  if ((${#missing[@]})); then
+    warn "Not available in this distribution's repositories: ${missing[*]}"
+    warn "Nerdshell will continue; unavailable optional features will stay disabled."
   fi
 }
 

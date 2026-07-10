@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Nerdshell Installer
+GenericName=Terminal Environment Installer
+Comment=Install and configure the Nerdshell terminal environment
+Exec=nerdshell-installer --desktop
+Icon=nerdshell
+Terminal=true
+Categories=Development;Utility;System;
+Keywords=terminal;shell;zsh;developer;
+StartupNotify=true

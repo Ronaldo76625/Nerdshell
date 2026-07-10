@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.nerdshell.Nerdshell</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Nerdshell Installer</name>
+  <summary>Install a beautiful developer-focused terminal environment</summary>
+  <description>
+    <p>
+      Nerdshell configures Zsh, Starship, eza, developer utilities, Nerd Fonts,
+      Git delta, SDKMAN and NVM while backing up existing user settings.
+    </p>
+  </description>
+  <launchable type="desktop-id">nerdshell.desktop</launchable>
+  <provides>
+    <binary>nerdshell-installer</binary>
+  </provides>
+  <developer id="io.github.nerdshell">
+    <name>Nerdshell Project</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+</component>
