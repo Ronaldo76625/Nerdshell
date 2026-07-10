@@ -24,11 +24,28 @@ It is designed for people who want a beautiful, visual, useful terminal without 
 
 ## macOS: double click install
 
-1. Download or clone this repository.
-2. Open the `macos` folder.
-3. Double click `install.command`.
-4. Follow the prompts.
-5. Open Ghostty or a new terminal window.
+Build the visual macOS installer:
+
+```bash
+./packaging/macos/build-dmg.sh 0.1.0
+```
+
+Open `dist/Nerdshell-0.1.0-macOS.dmg`, drag **Nerdshell Installer** to
+Applications and open it. Press **Instalar Nerdshell** and follow the progress
+in Terminal.
+
+The legacy repository installer remains available by double clicking
+`macos/install.command`.
+
+The default build uses an ad-hoc signature for local testing. For public
+distribution, provide a Developer ID identity and an optional notarization
+profile:
+
+```bash
+CODESIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" \
+NOTARY_PROFILE="nerdshell-notary" \
+./packaging/macos/build-dmg.sh 0.1.0
+```
 
 The installer creates backups before replacing any shell or terminal config.
 
