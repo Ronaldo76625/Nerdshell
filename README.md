@@ -4,6 +4,24 @@ Nerdshell is a premium terminal environment for macOS and Linux: Zsh, Starship, 
 
 It is designed for people who want a beautiful, visual, useful terminal without manually wiring every tool.
 
+## Preview
+
+### Project listing
+
+![Nerdshell project listing](assets/screenshots/listing-project.png)
+
+### Tree view
+
+![Nerdshell tree view](assets/screenshots/tree-view.png)
+
+### Autosuggestions and Git branch
+
+![Nerdshell autosuggestions and Git branch](assets/screenshots/autosuggestions-git.png)
+
+### Root directory listing
+
+![Nerdshell root listing](assets/screenshots/listing-root.png)
+
 ## macOS: double click install
 
 1. Download or clone this repository.
