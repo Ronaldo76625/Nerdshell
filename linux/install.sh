@@ -7,6 +7,18 @@ source "$ROOT/scripts/common.sh"
 
 [[ "$(uname -s)" == "Linux" ]] || fail "This installer is for Linux."
 
+INSTALL_SYSTEM_PACKAGES=1
+for argument in "$@"; do
+  case "$argument" in
+    --skip-packages)
+      INSTALL_SYSTEM_PACKAGES=0
+      ;;
+    *)
+      fail "Unknown installer option: $argument"
+      ;;
+  esac
+done
+
 SUDO=""
 if [[ "${EUID:-$(id -u)}" -ne 0 ]]; then
   command_exists sudo || fail "sudo is required to install Linux packages."
@@ -126,7 +138,11 @@ set_default_shell() {
 
 main() {
   log "Starting Linux setup"
-  install_linux_packages
+  if [[ "$INSTALL_SYSTEM_PACKAGES" -eq 1 ]]; then
+    install_linux_packages
+  else
+    log "System packages are managed by the installed distribution package"
+  fi
   install_nerd_fonts
   ensure_nvm
   ensure_sdkman

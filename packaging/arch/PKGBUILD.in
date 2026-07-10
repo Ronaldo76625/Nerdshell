@@ -1,0 +1,68 @@
+pkgname=nerdshell
+pkgver=@VERSION@
+pkgrel=1
+pkgdesc='Premium developer terminal environment for Arch Linux and Omarchy'
+arch=('any')
+url='https://github.com/Ronaldo76625/Nerdshell'
+license=('MIT')
+depends=(
+  'bash'
+  'zsh'
+  'git'
+  'curl'
+  'unzip'
+  'zip'
+  'fontconfig'
+  'eza'
+  'bat'
+  'btop'
+  'fastfetch'
+  'lazygit'
+  'fzf'
+  'fd'
+  'ripgrep'
+  'git-delta'
+  'zoxide'
+  'zsh-autosuggestions'
+  'zsh-syntax-highlighting'
+  'starship'
+  'jq'
+  'ttf-jetbrains-mono-nerd'
+  'ttf-nerd-fonts-symbols-mono'
+)
+optdepends=(
+  'ghostty: recommended terminal with Nerdshell configuration'
+  'alacritty: default terminal used by Omarchy'
+)
+install=nerdshell.install
+source=("nerdshell-${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+package() {
+  local root="$srcdir/nerdshell-$pkgver"
+
+  install -d "$pkgdir/usr/lib/nerdshell"
+  cp -R "$root/configs" "$pkgdir/usr/lib/nerdshell/configs"
+  cp -R "$root/scripts" "$pkgdir/usr/lib/nerdshell/scripts"
+  install -d "$pkgdir/usr/lib/nerdshell/linux"
+  install -Dm755 "$root/linux/install.sh" \
+    "$pkgdir/usr/lib/nerdshell/linux/install.sh"
+  install -Dm644 "$root/skip-system-packages" \
+    "$pkgdir/usr/lib/nerdshell/.skip-system-packages"
+
+  install -Dm755 "$root/linux/nerdshell-installer" \
+    "$pkgdir/usr/bin/nerdshell-installer"
+  install -Dm644 "$root/nerdshell.desktop" \
+    "$pkgdir/usr/share/applications/nerdshell.desktop"
+  install -Dm644 "$root/nerdshell.metainfo.xml" \
+    "$pkgdir/usr/share/metainfo/io.github.nerdshell.Nerdshell.metainfo.xml"
+  install -Dm644 "$root/nerdshell.svg" \
+    "$pkgdir/usr/share/icons/hicolor/scalable/apps/nerdshell.svg"
+  install -Dm644 "$root/README.md" \
+    "$pkgdir/usr/share/doc/nerdshell/README.md"
+  install -Dm644 "$root/LICENSE" \
+    "$pkgdir/usr/share/licenses/nerdshell/LICENSE"
+
+  find "$pkgdir/usr/lib/nerdshell/configs" -type f -exec chmod 0644 {} +
+  find "$pkgdir/usr/lib/nerdshell/scripts" -type f -exec chmod 0644 {} +
+}

@@ -6,11 +6,16 @@ readonly PACKAGED_INSTALLER="/usr/lib/nerdshell/linux/install.sh"
 run_installer() {
   local installer="$1"
   shift
+  local installer_options=()
+
+  if [[ -f "/usr/lib/nerdshell/.skip-system-packages" ]]; then
+    installer_options+=(--skip-packages)
+  fi
 
   if [[ "${1:-}" == "--desktop" ]]; then
     shift
     set +e
-    "$installer" "$@"
+    "$installer" "${installer_options[@]}" "$@"
     local status=$?
     set -e
 
@@ -25,7 +30,7 @@ run_installer() {
     return "$status"
   fi
 
-  exec "$installer" "$@"
+  exec "$installer" "${installer_options[@]}" "$@"
 }
 
 if [[ -x "$PACKAGED_INSTALLER" ]]; then

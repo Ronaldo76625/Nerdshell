@@ -71,6 +71,25 @@ applies the terminal configuration.
 Official targets are Debian, Ubuntu and Kubuntu. Linux Mint, KDE Neon, Pop!_OS,
 Zorin OS and other compatible derivatives are expected to work as well.
 
+## Arch Linux, Omarchy and derivatives
+
+Build the native Arch package from macOS or Linux with Docker running:
+
+```bash
+./packaging/arch/build-arch.sh 0.1.0
+```
+
+Install the generated package:
+
+```bash
+sudo pacman -U ./dist/nerdshell-0.1.0-1-any.pkg.tar.zst
+```
+
+Then open **Nerdshell Installer** from the application menu. On Omarchy, it
+works with the default Alacritty terminal and JetBrainsMono Nerd Font; Ghostty
+remains optional. Nerdshell backs up existing Starship and shell configuration
+before applying its own settings and does not modify Hyprland or Omarchy themes.
+
 ## Other Linux distributions
 
 From the project folder:
