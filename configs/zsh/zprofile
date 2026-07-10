@@ -1,0 +1,23 @@
+# Login-shell setup. Keep this thin; interactive work belongs in ~/.zshrc.
+
+typeset -U path PATH
+
+_path_prepend() {
+  local dir
+  for dir in "$@"; do
+    [[ -d "$dir" ]] && path=("$dir" ${path:#"$dir"})
+  done
+}
+
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  _path_prepend /opt/homebrew/sbin /opt/homebrew/bin
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+  _path_prepend /usr/local/sbin /usr/local/bin
+elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  _path_prepend /home/linuxbrew/.linuxbrew/sbin /home/linuxbrew/.linuxbrew/bin
+fi
+
+unfunction _path_prepend 2>/dev/null

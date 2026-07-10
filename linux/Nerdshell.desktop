@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Nerdshell Installer
+Comment=Install the Nerdshell premium terminal environment
+Terminal=true
+Exec=sh -c 'cd "$(dirname "$1")/.." && ./linux/install.sh' dummy %k
+Categories=Development;Utility;

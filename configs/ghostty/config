@@ -1,0 +1,33 @@
+theme = Catppuccin Mocha
+
+font-family = JetBrainsMono Nerd Font Mono
+font-family = Symbols Nerd Font Mono
+font-family-bold = JetBrainsMono Nerd Font Mono
+font-family-bold = Symbols Nerd Font Mono
+font-family-italic = JetBrainsMono Nerd Font Mono
+font-family-italic = Symbols Nerd Font Mono
+font-family-bold-italic = JetBrainsMono Nerd Font Mono
+font-family-bold-italic = Symbols Nerd Font Mono
+
+font-size = 15
+
+window-padding-x = 14
+window-padding-y = 12
+window-padding-balance = true
+window-save-state = always
+window-inherit-working-directory = true
+window-inherit-font-size = true
+
+background-opacity = 0.96
+background-blur = 20
+
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+confirm-close-surface = false
+
+shell-integration = detect
+shell-integration-features = cursor,no-sudo,title,no-ssh-env,no-ssh-terminfo,path
+
+macos-titlebar-style = transparent
+macos-option-as-alt = true

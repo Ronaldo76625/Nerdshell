@@ -1,0 +1,878 @@
+colourful: true
+
+filekinds:
+  directory:
+    foreground: "#7aa2f7"
+    is_bold: true
+  executable:
+    foreground: "#9ece6a"
+    is_bold: true
+  symlink:
+    foreground: "#2ac3de"
+
+extensions:
+  pdf:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: "󰈦"
+      style:
+        foreground: "#f7768e"
+
+  doc:
+    filename:
+      foreground: "#7aa2f7"
+    icon:
+      glyph: "󰈬"
+      style:
+        foreground: "#7aa2f7"
+
+  docx:
+    filename:
+      foreground: "#7aa2f7"
+    icon:
+      glyph: "󰈬"
+      style:
+        foreground: "#7aa2f7"
+
+  xls:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: "󰈛"
+      style:
+        foreground: "#9ece6a"
+
+  xlsx:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: "󰈛"
+      style:
+        foreground: "#9ece6a"
+
+  ppt:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: "󰈧"
+      style:
+        foreground: "#ff9e64"
+
+  pptx:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: "󰈧"
+      style:
+        foreground: "#ff9e64"
+
+  txt:
+    filename:
+      foreground: "#c0caf5"
+    icon:
+      glyph: "󰈙"
+      style:
+        foreground: "#c0caf5"
+
+  md:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: "󰍔"
+      style:
+        foreground: "#7dcfff"
+
+  png:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: "󰋩"
+      style:
+        foreground: "#bb9af7"
+
+  jpg:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: "󰋩"
+      style:
+        foreground: "#bb9af7"
+
+  jpeg:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: "󰋩"
+      style:
+        foreground: "#bb9af7"
+
+  gif:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: "󰋩"
+      style:
+        foreground: "#bb9af7"
+
+  webp:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: "󰋩"
+      style:
+        foreground: "#bb9af7"
+
+  svg:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: "󰜡"
+      style:
+        foreground: "#e0af68"
+
+  mp3:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: "󰎆"
+      style:
+        foreground: "#ff9e64"
+
+  m4a:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: "󰎆"
+      style:
+        foreground: "#ff9e64"
+
+  wav:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: "󰎆"
+      style:
+        foreground: "#ff9e64"
+
+  flac:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: "󰎆"
+      style:
+        foreground: "#ff9e64"
+
+  mp4:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: "󰕧"
+      style:
+        foreground: "#bb9af7"
+
+  mov:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: "󰕧"
+      style:
+        foreground: "#bb9af7"
+
+  mkv:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: "󰕧"
+      style:
+        foreground: "#bb9af7"
+
+  zip:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: "󰗄"
+      style:
+        foreground: "#e0af68"
+
+  rar:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: "󰗄"
+      style:
+        foreground: "#e0af68"
+
+  7z:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: "󰗄"
+      style:
+        foreground: "#e0af68"
+
+  tar:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: "󰗄"
+      style:
+        foreground: "#e0af68"
+
+  gz:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: "󰗄"
+      style:
+        foreground: "#e0af68"
+
+  java:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  jar:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  war:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  ear:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  class:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  groovy:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  gradle:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  properties:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#e0af68"
+
+  lock:
+    filename:
+      foreground: "#565f89"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#565f89"
+
+  mjs:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: "󰌞"
+      style:
+        foreground: "#e0af68"
+
+  cjs:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: "󰌞"
+      style:
+        foreground: "#e0af68"
+
+  js:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: "󰌞"
+      style:
+        foreground: "#e0af68"
+
+  jsx:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: "󰜈"
+      style:
+        foreground: "#7dcfff"
+
+  ts:
+    filename:
+      foreground: "#7aa2f7"
+    icon:
+      glyph: "󰛦"
+      style:
+        foreground: "#7aa2f7"
+
+  tsx:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: "󰜈"
+      style:
+        foreground: "#7dcfff"
+
+  html:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: "󰌝"
+      style:
+        foreground: "#ff9e64"
+
+  css:
+    filename:
+      foreground: "#7aa2f7"
+    icon:
+      glyph: "󰌜"
+      style:
+        foreground: "#7aa2f7"
+
+  less:
+    filename:
+      foreground: "#7aa2f7"
+    icon:
+      glyph: "󰌜"
+      style:
+        foreground: "#7aa2f7"
+
+  scss:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  json:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#e0af68"
+
+  yaml:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  yml:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  toml:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#ff9e64"
+
+  xml:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: "󰗀"
+      style:
+        foreground: "#ff9e64"
+
+  sql:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  ora:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  csv:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  log:
+    filename:
+      foreground: "#565f89"
+    icon:
+      glyph: "󰌱"
+      style:
+        foreground: "#565f89"
+
+  db:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  sqlite:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  sh:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  zsh:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  py:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#e0af68"
+
+  go:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  rs:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#ff9e64"
+
+  php:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#bb9af7"
+
+  rb:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  swift:
+    filename:
+      foreground: "#ff9e64"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#ff9e64"
+
+  c:
+    filename:
+      foreground: "#7aa2f7"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7aa2f7"
+
+  cpp:
+    filename:
+      foreground: "#7aa2f7"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7aa2f7"
+
+  app:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  dmg:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  pkg:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: "󰏗"
+      style:
+        foreground: "#e0af68"
+
+filenames:
+  Dockerfile:
+    filename:
+      foreground: "#7dcfff"
+      is_bold: true
+    icon:
+      glyph: "󰡨"
+      style:
+        foreground: "#7dcfff"
+
+  docker-compose.yml:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: "󰡨"
+      style:
+        foreground: "#7dcfff"
+
+  package.json:
+    filename:
+      foreground: "#9ece6a"
+      is_bold: true
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  package-lock.json:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  angular.json:
+    filename:
+      foreground: "#f7768e"
+      is_bold: true
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  pom.xml:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  build.gradle:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  README.md:
+    filename:
+      foreground: "#7dcfff"
+      is_bold: true
+    icon:
+      glyph: "󰂺"
+      style:
+        foreground: "#7dcfff"
+
+  LICENSE:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#e0af68"
+
+  .gitignore:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  .env:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  .env.local:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  .env.development:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  .env.production:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  .dockerignore:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: "󰡨"
+      style:
+        foreground: "#7dcfff"
+
+  Dockerfile.dev:
+    filename:
+      foreground: "#7dcfff"
+      is_bold: true
+    icon:
+      glyph: "󰡨"
+      style:
+        foreground: "#7dcfff"
+
+  docker-compose.yaml:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: "󰡨"
+      style:
+        foreground: "#7dcfff"
+
+  compose.yml:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: "󰡨"
+      style:
+        foreground: "#7dcfff"
+
+  compose.yaml:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: "󰡨"
+      style:
+        foreground: "#7dcfff"
+
+  Makefile:
+    filename:
+      foreground: "#7dcfff"
+      is_bold: true
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  gradlew:
+    filename:
+      foreground: "#7dcfff"
+      is_bold: true
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  gradlew.bat:
+    filename:
+      foreground: "#7dcfff"
+      is_bold: true
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  settings.gradle:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  settings.gradle.kts:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  build.gradle.kts:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  gradle.properties:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#e0af68"
+
+  application.properties:
+    filename:
+      foreground: "#e0af68"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#e0af68"
+
+  application.yml:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  application.yaml:
+    filename:
+      foreground: "#f7768e"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#f7768e"
+
+  grails-app:
+    filename:
+      foreground: "#7dcfff"
+      is_bold: true
+    icon:
+      glyph: ""
+      style:
+        foreground: "#7dcfff"
+
+  .npmrc:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  .nvmrc:
+    filename:
+      foreground: "#9ece6a"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#9ece6a"
+
+  tsconfig.json:
+    filename:
+      foreground: "#7aa2f7"
+    icon:
+      glyph: "󰛦"
+      style:
+        foreground: "#7aa2f7"
+
+  vite.config.ts:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#bb9af7"
+
+  webpack.config.js:
+    filename:
+      foreground: "#7dcfff"
+    icon:
+      glyph: "󰜫"
+      style:
+        foreground: "#7dcfff"
+
+  .eslintrc.json:
+    filename:
+      foreground: "#7aa2f7"
+    icon:
+      glyph: "󰱺"
+      style:
+        foreground: "#7aa2f7"
+
+  .prettierrc:
+    filename:
+      foreground: "#bb9af7"
+    icon:
+      glyph: ""
+      style:
+        foreground: "#bb9af7"

@@ -1,0 +1,5 @@
+# Keep ~/.zshenv tiny because it runs for every zsh process, including scripts.
+
+if [[ -d "$HOME/.cargo/bin" && ":$PATH:" != *":$HOME/.cargo/bin:"* ]]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi

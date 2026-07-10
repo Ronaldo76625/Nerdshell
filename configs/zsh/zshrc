@@ -1,0 +1,252 @@
+# =========================================================
+# Zsh premium dev environment
+# macOS/Linux + Homebrew + Starship + Java/Grails + Node/Angular
+# =========================================================
+
+[[ -o interactive ]] || return
+
+# Keep PATH deterministic and free of duplicates.
+typeset -U path PATH
+
+_path_prepend() {
+  local dir
+  for dir in "$@"; do
+    [[ -d "$dir" ]] && path=("$dir" ${path:#"$dir"})
+  done
+}
+
+# =========================================================
+# Homebrew / Linuxbrew
+# =========================================================
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  _path_prepend /opt/homebrew/sbin /opt/homebrew/bin
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+  _path_prepend /usr/local/sbin /usr/local/bin
+elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  _path_prepend /home/linuxbrew/.linuxbrew/sbin /home/linuxbrew/.linuxbrew/bin
+fi
+
+# =========================================================
+# History
+# =========================================================
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+
+# Navigation quality-of-life.
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+
+# =========================================================
+# Completion
+# =========================================================
+autoload -Uz compinit
+zmodload zsh/complist 2>/dev/null
+
+_compdump="$HOME/.zcompdump"
+if [[ ! -s "$_compdump" || -n "$_compdump"(N.mh+24) ]]; then
+  compinit -d "$_compdump"
+else
+  compinit -C -d "$_compdump"
+fi
+unset _compdump
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{cyan}-- %d --%f'
+
+# =========================================================
+# SDKMAN / Java / Grails / Groovy
+# =========================================================
+export SDKMAN_DIR="$HOME/.sdkman"
+if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
+  source "$SDKMAN_DIR/bin/sdkman-init.sh"
+fi
+
+# SDKMAN already exports JAVA_HOME and candidate paths. Keep a fallback only.
+if [[ -z "$JAVA_HOME" && -d "$HOME/.sdkman/candidates/java/current" ]]; then
+  export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
+fi
+
+[[ -n "$JAVA_HOME" ]] && _path_prepend "$JAVA_HOME/bin"
+
+# =========================================================
+# Node / NVM
+# =========================================================
+export NVM_DIR="$HOME/.nvm"
+_NVM_SCRIPT=""
+_NVM_COMPLETION=""
+
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  _NVM_SCRIPT="$NVM_DIR/nvm.sh"
+  _NVM_COMPLETION="$NVM_DIR/bash_completion"
+elif command -v brew >/dev/null 2>&1 && [[ -s "$(brew --prefix nvm 2>/dev/null)/nvm.sh" ]]; then
+  _NVM_SCRIPT="$(brew --prefix nvm)/nvm.sh"
+  _NVM_COMPLETION="$(brew --prefix nvm)/etc/bash_completion.d/nvm"
+fi
+
+# Put the latest installed Node on PATH without sourcing nvm on every shell.
+if [[ -d "$NVM_DIR/versions/node" ]]; then
+  _nvm_nodes=("$NVM_DIR"/versions/node/v*(N))
+  if (( ${#_nvm_nodes} )); then
+    _path_prepend "${_nvm_nodes[-1]}/bin"
+  fi
+  unset _nvm_nodes
+fi
+
+_load_nvm() {
+  unset -f nvm
+  [[ -s "$_NVM_SCRIPT" ]] && source "$_NVM_SCRIPT"
+  [[ -s "$_NVM_COMPLETION" ]] && source "$_NVM_COMPLETION"
+}
+
+nvm() {
+  _load_nvm
+  nvm "$@"
+}
+
+# =========================================================
+# Search and navigation
+# =========================================================
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
+
+if command -v fzf >/dev/null 2>&1 && [[ -t 0 && -t 1 ]]; then
+  source <(fzf --zsh)
+fi
+
+alias search='rg'
+ffind() {
+  fd --glob "$@"
+}
+
+# =========================================================
+# Eza / Bat / terminal visuals
+# =========================================================
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+export EZA_ICONS_AUTO="always"
+export EZA_ICON_SPACING=2
+
+alias ls='eza --icons=always --color=always --group-directories-first'
+alias l='eza --icons=always --color=always --group-directories-first'
+alias ll='eza -lh --icons=always --color=always --group-directories-first --git'
+alias la='eza -lah --icons=always --color=always --group-directories-first --git'
+alias lt='eza --tree --level=2 --icons=always --color=always --group-directories-first'
+alias tree='eza --tree --icons=always --color=always --group-directories-first'
+
+alias batcat='bat --paging=never'
+alias preview='bat --style=numbers,changes --color=always'
+
+# =========================================================
+# Directory shortcuts
+# =========================================================
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias home='cd ~'
+alias downloads='cd ~/Downloads'
+alias desktop='cd ~/Desktop'
+alias documents='cd ~/Documents'
+
+# =========================================================
+# Terminal utilities
+# =========================================================
+alias reload='exec zsh -l'
+alias cls='clear'
+alias c='clear'
+alias serve='python3 -m http.server'
+
+# =========================================================
+# Git
+# =========================================================
+alias gs='git status --short --branch'
+alias gst='git status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gl='git pull'
+alias gco='git checkout'
+alias gb='git branch'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias glog='git log --oneline --graph --decorate --all'
+alias lg='lazygit'
+
+# =========================================================
+# Angular, Grails, Java and Node
+# =========================================================
+alias ngs='ng serve'
+alias ngb='ng build'
+alias ngt='ng test'
+
+alias gr='grails run-app'
+alias grails-clean='grails clean'
+
+alias java-version='java -version'
+alias node-version='node --version'
+
+npm-clean-install() {
+  print -r "This removes node_modules and package-lock.json, then runs npm install."
+  read -q "REPLY?Continue? [y/N] "
+  print
+  [[ "$REPLY" == [Yy] ]] || return 1
+  rm -rf node_modules package-lock.json
+  npm install
+}
+
+# =========================================================
+# System helpers
+# =========================================================
+alias top='btop'
+alias ff='fastfetch'
+alias ports='lsof -i -P -n | /usr/bin/grep LISTEN'
+alias brewup='brew update && brew upgrade && brew cleanup'
+
+# Thefuck is intentionally kept manual; auto-loading it adds noticeable startup cost.
+alias fk='thefuck'
+
+# =========================================================
+# Prompt and visual plugins
+# Syntax highlighting must stay at the end.
+# =========================================================
+if command -v starship >/dev/null 2>&1 && [[ -t 1 ]]; then
+  eval "$(starship init zsh)"
+fi
+
+for _autosuggestions in \
+  /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh; do
+  [[ -s "$_autosuggestions" ]] && source "$_autosuggestions" && break
+done
+unset _autosuggestions
+
+for _syntax_highlighting in \
+  /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+  /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+  /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+  /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
+  [[ -s "$_syntax_highlighting" ]] && source "$_syntax_highlighting" && break
+done
+unset _syntax_highlighting
+
+unfunction _path_prepend 2>/dev/null
