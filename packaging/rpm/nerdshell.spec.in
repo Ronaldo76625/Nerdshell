@@ -1,0 +1,72 @@
+Name:           nerdshell
+Version:        @VERSION@
+Release:        1
+Summary:        Premium developer terminal environment
+License:        MIT
+URL:            https://github.com/Ronaldo76625/Nerdshell
+Source0:        %{name}-%{version}.tar.gz
+BuildArch:      noarch
+
+Requires:       bash
+Requires:       zsh
+Requires:       git
+Requires:       curl
+Requires:       ca-certificates
+Requires:       unzip
+Requires:       fontconfig
+
+%description
+Nerdshell configures Zsh, Starship, eza, developer utilities, Nerd Fonts,
+Git delta, SDKMAN and NVM while backing up existing user settings. It supports
+Fedora, Red Hat Enterprise Linux, Rocky Linux, AlmaLinux and CentOS Stream.
+
+%prep
+%setup -q
+
+%build
+
+%install
+install -d %{buildroot}/usr/lib/nerdshell
+cp -a configs %{buildroot}/usr/lib/nerdshell/configs
+cp -a scripts %{buildroot}/usr/lib/nerdshell/scripts
+install -Dm0755 linux/install.sh %{buildroot}/usr/lib/nerdshell/linux/install.sh
+install -Dm0755 linux/nerdshell-installer %{buildroot}%{_bindir}/nerdshell-installer
+install -Dm0644 nerdshell.desktop %{buildroot}%{_datadir}/applications/nerdshell.desktop
+install -Dm0644 nerdshell.metainfo.xml %{buildroot}%{_datadir}/metainfo/io.github.nerdshell.Nerdshell.metainfo.xml
+install -Dm0644 nerdshell.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/nerdshell.svg
+install -Dm0644 README.md %{buildroot}%{_docdir}/%{name}/README.md
+install -Dm0644 LICENSE %{buildroot}%{_licensedir}/%{name}/LICENSE
+find %{buildroot}/usr/lib/nerdshell/configs -type f -exec chmod 0644 {} +
+find %{buildroot}/usr/lib/nerdshell/scripts -type f -exec chmod 0644 {} +
+
+%post
+if command -v update-desktop-database >/dev/null 2>&1; then
+  update-desktop-database -q %{_datadir}/applications || true
+fi
+if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+  gtk-update-icon-cache -q -t -f %{_datadir}/icons/hicolor || true
+fi
+printf '%s\n' \
+  'Nerdshell installed.' \
+  'Open "Nerdshell Installer" from the application menu to configure your user.'
+
+%postun
+if command -v update-desktop-database >/dev/null 2>&1; then
+  update-desktop-database -q %{_datadir}/applications || true
+fi
+if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+  gtk-update-icon-cache -q -t -f %{_datadir}/icons/hicolor || true
+fi
+
+%files
+%license %{_licensedir}/%{name}/LICENSE
+%doc %{_docdir}/%{name}/README.md
+%{_bindir}/nerdshell-installer
+/usr/lib/nerdshell/
+%{_datadir}/applications/nerdshell.desktop
+%{_datadir}/metainfo/io.github.nerdshell.Nerdshell.metainfo.xml
+%{_datadir}/icons/hicolor/scalable/apps/nerdshell.svg
+
+%changelog
+* Fri Jul 10 2026 Nerdshell Project <nerdshell@localhost> - @VERSION@-1
+- Initial RPM release

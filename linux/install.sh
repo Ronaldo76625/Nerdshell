@@ -32,10 +32,7 @@ install_linux_packages() {
     $SUDO apt-get update
     install_apt_packages
   elif command_exists dnf; then
-    $SUDO dnf install -y \
-      zsh git curl unzip fontconfig eza bat btop fastfetch lazygit fzf fd-find \
-      ripgrep git-delta zoxide zsh-autosuggestions zsh-syntax-highlighting \
-      starship jq p7zip p7zip-plugins
+    install_dnf_packages
   elif command_exists pacman; then
     $SUDO pacman -Syu --needed --noconfirm \
       zsh git curl unzip fontconfig eza bat btop fastfetch lazygit fzf fd \
@@ -48,6 +45,41 @@ install_linux_packages() {
       starship jq p7zip
   else
     fail "Unsupported Linux package manager. Install packages manually, then rerun Nerdshell."
+  fi
+}
+
+dnf_package_exists() {
+  dnf -q list --available "$1" >/dev/null 2>&1 || \
+    dnf -q list --installed "$1" >/dev/null 2>&1
+}
+
+install_dnf_packages() {
+  local required=(zsh git curl ca-certificates unzip fontconfig)
+  local optional=(
+    eza bat btop fastfetch lazygit fzf fd-find ripgrep git-delta zoxide
+    zsh-autosuggestions zsh-syntax-highlighting starship jq
+  )
+  local available=()
+  local missing=()
+  local package
+
+  $SUDO dnf install -y "${required[@]}"
+
+  for package in "${optional[@]}"; do
+    if dnf_package_exists "$package"; then
+      available+=("$package")
+    else
+      missing+=("$package")
+    fi
+  done
+
+  if ((${#available[@]})); then
+    $SUDO dnf install -y "${available[@]}"
+  fi
+
+  if ((${#missing[@]})); then
+    warn "Not available in the enabled DNF repositories: ${missing[*]}"
+    warn "Enable EPEL for more tools on RHEL-compatible distributions, then rerun Nerdshell."
   fi
 }
 

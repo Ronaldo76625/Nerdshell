@@ -90,6 +90,25 @@ works with the default Alacritty terminal and JetBrainsMono Nerd Font; Ghostty
 remains optional. Nerdshell backs up existing Starship and shell configuration
 before applying its own settings and does not modify Hyprland or Omarchy themes.
 
+## Fedora, RHEL, Rocky, AlmaLinux and CentOS Stream
+
+Build the RPM from macOS or Linux with Docker running:
+
+```bash
+./packaging/rpm/build-rpm.sh 0.1.0
+```
+
+Install it with DNF:
+
+```bash
+sudo dnf install ./dist/nerdshell-0.1.0-1.noarch.rpm
+```
+
+Then open **Nerdshell Installer** from the application menu. Fedora provides
+most optional terminal tools directly. On RHEL-compatible systems, enabling
+EPEL makes more tools available, but it is not required for the RPM itself to
+install or for the core Nerdshell configuration to work.
+
 ## Other Linux distributions
 
 From the project folder:
