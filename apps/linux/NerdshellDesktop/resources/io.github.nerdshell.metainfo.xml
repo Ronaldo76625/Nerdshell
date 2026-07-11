@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.nerdshell.desktop</id>
+  <name>Nerdshell</name>
+  <summary>Professional terminal with an integrated Nerdshell environment</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <description>
+    <p>Nerdshell is a native GTK/VTE terminal with an isolated, ready-to-use Zsh, Starship and developer-tool profile.</p>
+  </description>
+  <launchable type="desktop-id">io.github.nerdshell.desktop</launchable>
+  <provides><binary>nerdshell</binary></provides>
+  <categories><category>System</category><category>TerminalEmulator</category><category>Development</category></categories>
+</component>

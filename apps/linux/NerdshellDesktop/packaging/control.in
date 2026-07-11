@@ -1,0 +1,12 @@
+Package: nerdshell-desktop
+Version: @VERSION@
+Section: utils
+Priority: optional
+Architecture: @ARCH@
+Maintainer: Nerdshell Project
+Depends: zsh, libgtk-3-0, libvte-2.91-0, openssh-client
+Recommends: starship, eza, bat, btop, fastfetch, fzf, fd-find, ripgrep, zoxide, zsh-autosuggestions, zsh-syntax-highlighting, fonts-jetbrains-mono
+Conflicts: nerdshell-desktop-beta
+Description: Native Nerdshell terminal for Debian and Ubuntu
+ Nerdshell Desktop is a GTK/VTE terminal emulator with tabs, local PTY
+ sessions, OpenSSH compatibility and an isolated Nerdshell Zsh profile.

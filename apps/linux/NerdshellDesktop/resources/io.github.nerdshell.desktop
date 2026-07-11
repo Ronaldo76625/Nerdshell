@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Name=Nerdshell
+Comment=Professional terminal with the Nerdshell environment built in
+Exec=nerdshell
+Icon=nerdshell
+Terminal=false
+Categories=System;TerminalEmulator;Development;
+Keywords=shell;prompt;command;terminal;ssh;
+StartupNotify=true
+StartupWMClass=io.github.nerdshell.desktop
+Actions=NewWindow;
+
+[Desktop Action NewWindow]
+Name=New Terminal
+Exec=nerdshell
