@@ -161,9 +161,7 @@ static void add_terminal(NerdshellWindow *state, const gchar *working_directory)
     vte_terminal_set_color_cursor(terminal, &cursor);
 
     gchar *shell = get_shell();
-    gchar *shell_name = g_path_get_basename(shell);
-    gchar *login_name = g_strconcat("-", shell_name, NULL);
-    gchar *argv[] = { login_name, NULL };
+    gchar *argv[] = { shell, "-l", NULL };
     gchar **environment = g_get_environ();
     gchar *zdotdir = g_build_filename(profile, "zdotdir", NULL);
     gchar *starship = g_build_filename(profile, "starship.toml", NULL);
@@ -188,7 +186,7 @@ static void add_terminal(NerdshellWindow *state, const gchar *working_directory)
         G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, -1, NULL, NULL, NULL);
 
     g_strfreev(environment); g_free(eza); g_free(starship); g_free(zdotdir);
-    g_free(login_name); g_free(shell_name); g_free(shell); g_free(profile);
+    g_free(shell); g_free(profile);
 }
 
 static void action_new_tab(GSimpleAction *action, GVariant *parameter, gpointer user_data)
@@ -214,6 +212,15 @@ static void action_find(GSimpleAction *action, GVariant *parameter, gpointer use
 static void activate(GtkApplication *app, gpointer user_data)
 {
     (void)user_data;
+    GtkCssProvider *provider = gtk_css_provider_new();
+    gtk_css_provider_load_from_data(provider, css, -1, NULL);
+    gtk_style_context_add_provider_for_screen(
+        gdk_screen_get_default(),
+        GTK_STYLE_PROVIDER(provider),
+        GTK_STYLE_PROVIDER_PRIORITY_APPLICATION
+    );
+    g_object_unref(provider);
+
     NerdshellWindow *state = g_new0(NerdshellWindow, 1);
     state->app = app;
     state->window = gtk_application_window_new(app);
@@ -225,11 +232,11 @@ static void activate(GtkApplication *app, gpointer user_data)
     gtk_container_add(GTK_CONTAINER(state->window), state->notebook);
 
     const GActionEntry actions[] = {
-        { "new-tab", action_new_tab, NULL, NULL, NULL },
-        { "close-tab", action_close_tab, NULL, NULL, NULL },
-        { "copy", action_copy, NULL, NULL, NULL },
-        { "paste", action_paste, NULL, NULL, NULL },
-        { "find", action_find, NULL, NULL, NULL }
+        { .name = "new-tab", .activate = action_new_tab },
+        { .name = "close-tab", .activate = action_close_tab },
+        { .name = "copy", .activate = action_copy },
+        { .name = "paste", .activate = action_paste },
+        { .name = "find", .activate = action_find }
     };
     g_action_map_add_action_entries(G_ACTION_MAP(state->window), actions, G_N_ELEMENTS(actions), state);
     const gchar *new_tab[] = { "<Primary>t", NULL };
@@ -247,11 +254,6 @@ static void activate(GtkApplication *app, gpointer user_data)
 
 int main(int argc, char **argv)
 {
-    GtkCssProvider *provider = gtk_css_provider_new();
-    gtk_css_provider_load_from_data(provider, css, -1, NULL);
-    gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-    g_object_unref(provider);
-
     GtkApplication *app = gtk_application_new(APP_ID, G_APPLICATION_HANDLES_OPEN);
     g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
     int status = g_application_run(G_APPLICATION(app), argc, argv);

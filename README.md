@@ -119,6 +119,20 @@ From the project folder:
 
 Some Linux file managers allow double click execution through `linux/Nerdshell.desktop`, but behavior varies by desktop environment. The terminal command above is the reliable path.
 
+## Windows 10 and 11
+
+Build the native Windows installers from macOS or Linux with Go:
+
+```bash
+./apps/windows/NerdshellInstaller/build-windows.sh 0.1.0
+```
+
+Double click the installer matching the computer architecture. It requests
+administrator permission, installs Windows Terminal, PowerShell 7, Starship,
+JetBrainsMono Nerd Font and supported developer tools through WinGet, then
+creates a **Nerdshell Terminal** shortcut. Existing PowerShell, Starship and
+Windows Terminal settings are backed up before changes are applied.
+
 ## What Nerdshell installs/configures
 
 - Zsh with fast startup, history, completion, autosuggestions and syntax highlighting.
